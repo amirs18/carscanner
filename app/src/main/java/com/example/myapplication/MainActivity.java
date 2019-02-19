@@ -169,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
                     new LineFeedOffCommand().run(socket.getInputStream(), socket.getOutputStream());
                     new TimeoutCommand(125).run(socket.getInputStream(), socket.getOutputStream());
                     new SelectProtocolCommand(ObdProtocols.AUTO).run(socket.getInputStream(), socket.getOutputStream());
-
                 } catch (Exception e) {
                     Log.d("myee",e+"");
                     // handle errors
@@ -177,8 +176,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 Log.d("myee", e.getMessage());
             }
-
-
 
             while (true){
                 EngineCoolantTemperatureCommand r =new EngineCoolantTemperatureCommand();
@@ -191,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 tmp=r.getFormattedResult();
                 tmp.replace('C','0');
-                if(Integer.parseInt(tmp) > 110){
+                if(Integer.parseInt(tmp)/10 > 110){
 
                 }
                 Message message=new Message();
@@ -202,8 +199,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }
 
 
